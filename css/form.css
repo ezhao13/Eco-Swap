@@ -1,0 +1,67 @@
+
+      /* Styling the Body element i.e. Color,
+        Font, Alignment */
+body {
+  font-family: Poppins, sans-serif;;
+  text-align: center;
+}
+
+/* Styling the Form (Color, Padding, Shadow) */
+form {
+  background-color: #fff;
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 30px 20px;
+  box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Styling formBox Class */
+.formBox {
+  text-align: left;
+  margin-bottom: 25px;
+}
+
+/* Styling formBox Label */
+.formBox label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+/* Styling formBox input,
+  select, textarea */
+.formBox input,
+.formBox select,
+.formBox textarea {
+  border: 1px solid #777;
+  border-radius: 2px;
+  font-family: inherit;
+  padding: 10px;
+  display: block;
+  width: 95%;
+}
+
+/* Styling formBox Radio
+  button and Checkbox */
+.formBox input[type="radio"],
+.formBox input[type="checkbox"] {
+  display: inline-block;
+  width: auto;
+}
+
+/* Styling Button */
+button {
+  onclick: reset();
+  background-color: #89cff0;
+  border: 1px solid #777;
+  border-radius: 2px;
+  font-family: inherit;
+  font-size: 21px;
+  display: block;
+  width: 100%;
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+button:hover {
+  background-color:#76c9e3;
+  transition: 0.7s;
+}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Eco-Swap | Listings</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Eco-Swap | Listings</title>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/form.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  
+</head>
+
+  
+<body style="background-image:url('images/items.jpg')">
+  <!-- Links -->
+  <div class="w3-top">
+    <div class="w3-row w3-padding w3-black">
+      <div class="w3-col s3">
+        <a href="index.html" class="w3-button w3-block w3-black">HOME</a>
+      </div>
+      <div class="w3-col s3">
+        <a href="about.html" class="w3-button w3-block w3-black">ABOUT</a>
+      </div>
+      <div class="w3-col s3">
+        <a href="items.html" class="w3-button w3-block w3-black">BROWSE ITEMS</a>
+      </div>
+      <div class="w3-col s3">
+        <a href="listings.html" class="w3-button w3-block w3-black">LISTINGS</a>
+      </div>
+    </div>
+  </div>
+
+
+
+    <br></br>
+    <h1 style = "color: #89cff0"><b><u><em>List Your Item</em></u></b></h1>
+
+  <!-- Form to insert -->
+    <form id="insert-form" enctype="multipart/form-data">
+
+      <div class="formBox">
+        <label for="name">Item Name</label>
+        <input type="text" id="name" name="name" placeholder="Name" />
+      </div>
+      <div class="formBox">
+        <label for="email">Email Address</label>
+        <input type="text" id="email" name="email" placeholder="Email" />
+      </div>
+      <div class="formBox">
+        <label for="number">Phone Number</label>
+        <input type="number" id="number" name="number" placeholder="Number" />
+      </div>
+      <div class="formBox">
+        <label for="image">Attatch an image of the item (<2000kb)</label>
+        <input type="file" id="image" name="image" placeholder="Attach and image of the item" />
+      </div>
+      <div class="formBox">
+        <label for="type">Which option best describes the item?</label>
+
+        <!-- Dropdown options -->
+        <select name="option" id="role">
+          <option value="item1">Furniture</option>
+          <option value="item2">Clothing</option>
+          <option value="item3">Gadget</option>
+          <option value="item4">Other</option>
+        </select>
+      </div>
+      <div class="formBox">
+        <label for="description">Describe your item</label>
+        <input type="text" id="description" name="itemDescription" placeholder="Product description" />
+
+      </div>
+      <div class="formBox">
+        <button id="btn" type="submit"> List my item </button>
+      </div>
+    </form>
+    <div id="result"></div>
+    <!-- Send form data to database -->
+    <script src="write.js"></script> 
+    
+  </body>
+
+</html>

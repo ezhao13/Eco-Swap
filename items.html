@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Eco-Swap | Browse</title>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/form.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+  <!-- Our stuff -->
+  <script>
+    var data;
+    let cnt = 0;
+    let len = 0;
+
+function updateContent(index) {
+  console.log(index, data, data[index]);
+  console.log(data[index].path);
+  const curpage = document.getElementById("curpage");
+  if (data[index] && data[index].path) {
+    const imageItem = document.getElementById("imageItem");
+    imageItem.src = data[index].path;
+  }
+
+  document.getElementById("nameItem").innerHTML = data[index].itemName;
+  document.getElementById("emailItem").innerHTML = "Email: "+ data[index].email;
+  document.getElementById("numberItem").innerHTML = "Phone Number: "+data[index].phoneNumber;
+  document.getElementById("descriptionItem").innerHTML = data[index].itemDescription;
+  var toggleContent = document.getElementById("toggleContent");
+  toggleContent.style.fontSize = "20px";
+  toggleContent.style.fontWeight = "bold";
+  document.getElementById("toggleContent").textContent = "❤️ I Want This ❤️";
+  $('#imagethumbnail').attr("src",data[index].path);
+  readLess();
+}
+    
+function readMore() {
+  document.getElementById("nameItem").style.display = 'block';
+  document.getElementById("idItem").style.display = 'block';
+  document.getElementById("emailItem").style.display = "block";
+  document.getElementById("numberItem").style.display = "block";
+  document.getElementById("descriptionItem").style.display = "block";
+}
+
+function readLess() {
+  document.getElementById("nameItem").style.display = 'none';
+  document.getElementById("idItem").style.display = 'none';
+  document.getElementById("emailItem").style.display = 'none';
+  document.getElementById("numberItem").style.display = 'none';
+  document.getElementById("descriptionItem").style.display = 'none';
+}
+
+// Disable button when clicked
+function disableForASecond(elementId) {
+  var element = document.getElementById(elementId);
+  if (!element || element.getAttribute('data-disabled') === 'true') return;
+
+  element.setAttribute('data-disabled', 'true'); 
+
+  setTimeout(() => {
+    element.setAttribute('data-disabled', 'false'); 
+  }, 600);
+}
+
+// Switch slide to next slide
+function moreSlides() {
+  var nextItem = document.getElementById('nextItem');
+  if (nextItem.getAttribute('data-disabled') === 'true') return; // Exit if the button is disabled
+
+  disableForASecond('nextItem');
+  disableForASecond('previousItem');
+  toggleFadeEffect(1);
+      setTimeout(()=>{
+      updateContent(cnt);
+      }, 600);
+};
+
+// Switch slide to previous slide
+function lessSlides() {
+  var previousItem = document.getElementById('previousItem');
+  if (previousItem.getAttribute('data-disabled') === 'true') return; // Exit if the button is disabled
+  
+  disableForASecond('previousItem');
+  disableForASecond('nextItem');
+  toggleFadeEffect(-1);
+      setTimeout(()=>{
+      updateContent(cnt);
+      }, 500);
+};
+
+
+// Make sure only one event listener is added to "toggleContent"
+let listenersAdded = false;    
+function initializePageContent(data) {
+  cnt = 0;
+  len = data.length;
+  updateContent(cnt);
+  
+  if (!listenersAdded) {
+    listenersAdded = true;
+  
+    
+      document.getElementById("toggleContent").addEventListener("click", function() {
+        console.log("Here");
+        let modal = document.getElementById("myModal");
+        if (modal.style.display === "none" || modal.style.display === "") {
+          // Show content
+          readMore();
+          // Show the modal
+          modal.style.display = "block";
+        } else {
+          readLess();
+          // Hide the modal
+          modal.style.display = "none";
+        }
+      });
+
+          // Close the modal
+      document.getElementById("close").addEventListener("click", function() {
+        document.getElementById("myModal").style.display = "none";
+      });
+
+  } // End if
+} // End function
+
+  </script>
+  <div>
+    <br></br>
+  </div>
+  <div id="result">
+   <!--- Search form -->
+    <form id="search-form">
+      <center>
+        <label for="search"></label>
+        <input type="text" name="search" id="search" placeholder="Find an item!">
+        <input type="submit" value="Search">
+      </center>
+    </form>
+  </div>
+</head>
+
+
+  
+<body style="background-color: black">
+  <!-- Links -->
+  <div class="w3-top">
+    <div class="w3-row w3-padding w3-black">
+      <div class="w3-col s3">
+        <a href="index.html" class="w3-button w3-block w3-black">HOME</a>
+      </div>
+      <div class="w3-col s3">
+        <a href="about.html" class="w3-button w3-block w3-black">ABOUT</a>
+      </div>
+      <div class="w3-col s3">
+        <a href="items.html" class="w3-button w3-block w3-black">BROWSE ITEMS</a>
+      </div>
+      <div class="w3-col s3">
+        <a href="listings.html" class="w3-button w3-block w3-black">LISTINGS</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tinder thing -->
+  <div id="curpage">
+    <img id="imageItem" src="" class="img-responsive">
+    
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span id="close" class="close">&times;</span>
+        <b><h3 id="nameItem"></h3></b>
+        <img id="imagethumbnail" src="" class="img-thumbnail">
+        <p id="idItem"></p>
+        <p id="emailItem"></p>
+        <p id="numberItem"></p>
+        <p id="descriptionItem"></p>
+      </div>
+    </div>
+    <!-- Buttons -->
+    <div class="button-container">
+      <a class="testing0" id="previousItem" data-disabled="false" onclick="lessSlides();"style="color: white; font-size: 40px">❮</a>
+      <a class="testing1" id="nextItem" data-disabled="false" onclick="moreSlides();" style="color: white; font-size: 40px"">❯</a>
+    </div>
+    <button class="testing2" id="toggleContent"></button>
+    <!-- no need for content in this text box because you define it later anyways -->
+  </div>
+
+  
+<script>
+// On search, get new data from the database
+function fetchData(formData) {
+  $.ajax({
+    url: 'getItems.php',
+    method: 'POST',
+    dataType: 'json',
+    data: formData, // Include the form data in the request
+    success: function(output) {
+      data = output;
+      initializePageContent(data); // Initialize the content 
+    }
+  });
+}
+  
+$(document).ready(function() {
+  fetchData(); // Call without form data on page load
+});
+
+$('#search-form').submit(function(event) {
+  event.preventDefault(); // Prevent the form from being submitted normally
+  var formData = $(this).serialize(); // Serialize the form data
+  fetchData(formData); 
+});
+</script>
+
+<!-- For fading in and out-->
+<style>
+img {
+    max-width: 100%;
+    height: auto;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+.fade-in {
+    opacity: 1;
+}
+
+.fade-out {
+    opacity: 0;
+}
+</style>
+  
+<script>
+    // Fade in and out
+    function toggleFadeEffect(n) {
+        cnt += n;
+        if (cnt >= len) {
+          cnt = 0;
+        }
+        if (cnt < 0) {
+          cnt = len - 1;
+        }
+      const image = document.getElementById('imageItem');
+      image.classList.add('fade-out');
+      setTimeout(()=>{
+        image.classList.remove('fade-out');
+      }, 1000);
+    }
+
+
+</script>
+  
+</body>
+
+</html>
